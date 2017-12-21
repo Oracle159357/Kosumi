@@ -1,0 +1,45 @@
+﻿<controls:MetroWindow x:Class="Kosumi.TestWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      d:DataContext="{d:DesignInstance {x:Type presentation:TestViewModel}, IsDesignTimeCreatable=False}"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:local="clr-namespace:Kosumi"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:presentation="clr-namespace:Kosumi.Presentation"
+                      mc:Ignorable="d"
+                      Title="Тест" Height="150" Width="250" d:DesignWidth="227" d:DesignHeight="348">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Center">Назва</Label>
+        <TextBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Width="130"
+                 Height="10"
+                 Text="{Binding Test.Title, UpdateSourceTrigger=PropertyChanged}" />
+        <Label Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Center">Кількість питань</Label>
+        <controls:NumericUpDown Grid.Row="1" Grid.Column="1" HorizontalContentAlignment="Left" Minimum="0" Maximum="20"
+                                Interval="1" Value="{Binding Test.QuestionsCount}" />
+        <Label Grid.Row="2" Grid.Column="0" HorizontalContentAlignment="Right" VerticalContentAlignment="Center">Кількість часу</Label>
+        <controls:NumericUpDown Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Left" Minimum="0"
+                                Maximum="180"
+                                Interval="10" Value="{Binding Test.Time}" />
+        <Button Grid.Row="3" Grid.Column="0" Style="{StaticResource AccentedSquareButtonStyle}" Width="200" Height="30"
+                HorizontalAlignment="Center" Margin="5 0 0 0"
+                Command="{Binding CancelTest}">
+            Cancel
+        </Button>
+        <Button Grid.Row="3" Grid.Column="1" Style="{StaticResource AccentedSquareButtonStyle}" Width="200" Height="30"
+                HorizontalAlignment="Center" Margin="5 0 0 0"
+                Command="{Binding AddTest}">
+            ADD
+        </Button>
+    </Grid>
+</controls:MetroWindow>

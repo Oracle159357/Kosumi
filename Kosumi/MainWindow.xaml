@@ -1,0 +1,163 @@
+﻿<controls:MetroWindow x:Class="Kosumi.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      d:DataContext="{d:DesignInstance {x:Type presentation:MainViewModel}, IsDesignTimeCreatable=False}"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:local="clr-namespace:Kosumi"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:presentation="clr-namespace:Kosumi.Presentation"
+                      mc:Ignorable="d"
+                      Title="Создание теста" Height="auto" Width="auto">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <GroupBox Grid.Column="0" Name="GroupBox1" Grid.RowSpan="2">
+            <GroupBox.Header>
+                <Grid Height="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Тести" Foreground="White"
+                               FontFamily="Segoe UI" FontSize="12" FontWeight="Normal" />
+                    <Button Grid.Column="1"
+                            ToolTip="Add test" Style="{DynamicResource MetroCircleButtonStyle}"
+                            Height="35" Width="35" HorizontalAlignment="Right" Margin="0,-10,-5,-10"
+                            Command="{Binding AddTestCommand}">
+                        <ContentControl Content="+" Foreground="White" />
+                    </Button>
+                    <Button Grid.Column="2"
+                            ToolTip="Change item" Style="{DynamicResource MetroCircleButtonStyle}"
+                            Height="35" Width="35" HorizontalAlignment="Right" Margin="0,-10,-5,-10"
+                            Command="{Binding ChangeTestCommand}">
+                        <ContentControl Content="&#9998;" Foreground="White" />
+                    </Button>
+                    <Button Grid.Column="3"
+                            ToolTip="Delete item" Style="{DynamicResource MetroCircleButtonStyle}"
+                            Height="35" Width="35" HorizontalAlignment="Right" Margin="0,-10,-5,-10"
+                            Command="{Binding DeleteTestCommand}">
+                        <ContentControl Content="-" Foreground="White" />
+                    </Button>
+                    <Button Grid.Column="4"
+                            ToolTip="Start item" Style="{DynamicResource MetroCircleButtonStyle}"
+                            Height="35" Width="35" HorizontalAlignment="Right" Margin="0,-10,-5,-10"
+                            Command="{Binding StartTestCommand}">
+                        <ContentControl Content="&#x25B6;" Foreground="White" />
+                    </Button>
+                </Grid>
+            </GroupBox.Header>
+            <Grid>
+                <DataGrid Grid.ColumnSpan="2" ItemsSource="{Binding Tests}"
+                          SelectedItem="{Binding SelectedItemTest}" SelectionMode="Single" AutoGenerateColumns="False"
+                          IsReadOnly="True">
+                    <DataGrid.InputBindings>
+                        <KeyBinding Key="Delete" Command="{Binding DeleteQuestionCommand}" />
+                    </DataGrid.InputBindings>
+
+                    <DataGrid.Columns>
+
+                        <DataGridTextColumn Header="Title" Binding="{Binding Title}" />
+                        <DataGridTextColumn Header="Time" Binding="{Binding Time}" />
+                        <DataGridTextColumn Header="Questions count" Binding="{Binding QuestionsCount}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Name="GroupBox2">
+            <GroupBox.Header>
+                <Grid Height="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Питання" Foreground="White"
+                               FontFamily="Segoe UI" FontSize="12" FontWeight="Normal" />
+                    <Button Grid.Column="1"
+                            ToolTip="Add item" Style="{DynamicResource MetroCircleButtonStyle}"
+                            Height="35" Width="35" HorizontalAlignment="Right" Margin="0,-10,-5,-10"
+                            Command="{Binding AddQuestionCommand}">
+                        <ContentControl Content="+" Foreground="White" />
+                    </Button>
+                    <Button Grid.Column="2"
+                            ToolTip="Change item" Style="{DynamicResource MetroCircleButtonStyle}"
+                            Height="35" Width="35" HorizontalAlignment="Right" Margin="0,-10,-5,-10"
+                            Command="{Binding ChangeQuestionCommand}">
+                        <ContentControl Content="&#9998;" Foreground="White" />
+                    </Button>
+                    <Button Grid.Column="3"
+                            ToolTip="Delete item" Style="{DynamicResource MetroCircleButtonStyle}"
+                            Height="35" Width="35" HorizontalAlignment="Right" Margin="0,-10,-5,-10"
+                            Command="{Binding DeleteQuestionCommand}">
+                        <ContentControl Content="-" Foreground="White" />
+                    </Button>
+                </Grid>
+            </GroupBox.Header>
+            <Grid>
+                <DataGrid Grid.ColumnSpan="2" ItemsSource="{Binding Questions}"
+                          SelectedItem="{Binding SelectedItemQuestion}" SelectionMode="Single"
+                          AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.InputBindings>
+                        <KeyBinding Key="Delete" Command="{Binding DeleteQuestionCommand}" />
+                    </DataGrid.InputBindings>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Value" Binding="{Binding Value}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Column="2" Name="GroupBox3">
+            <GroupBox.Header>
+                <Grid Height="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Відповіді" Foreground="White"
+                               FontFamily="Segoe UI" FontSize="12" FontWeight="Normal" />
+                    <Button Grid.Column="1"
+                            ToolTip="Add item" Style="{DynamicResource MetroCircleButtonStyle}"
+                            Height="35" Width="35" HorizontalAlignment="Right" Margin="0,-10,-5,-10"
+                            Command="{Binding AddAnswerCommand}">
+                        <ContentControl Content="+" Foreground="White" />
+                    </Button>
+                    <Button Grid.Column="2"
+                            ToolTip="Change item" Style="{DynamicResource MetroCircleButtonStyle}"
+                            Height="35" Width="35" HorizontalAlignment="Right" Margin="0,-10,-5,-10"
+                            Command="{Binding ChangeAnswerCommand}">
+                        <ContentControl Content="&#9998;" Foreground="White" />
+                    </Button>
+                    <Button Grid.Column="3"
+                            ToolTip="Delete item" Style="{DynamicResource MetroCircleButtonStyle}"
+                            Height="35" Width="35" HorizontalAlignment="Right" Margin="0,-10,-5,-10"
+                            Command="{Binding DeleteAnswerCommand}">
+                        <ContentControl Content="-" Foreground="White" />
+                    </Button>
+                </Grid>
+            </GroupBox.Header>
+            <Grid>
+                <DataGrid Grid.ColumnSpan="2" ItemsSource="{Binding Answers}"
+                          SelectedItem="{Binding SelectedItemAnswer}" SelectionMode="Single"
+                          AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.InputBindings>
+                        <KeyBinding Key="Delete" Command="{Binding DeleteAnswerCommand}" />
+                    </DataGrid.InputBindings>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Value" Binding="{Binding Value}" />
+                        <DataGridTextColumn Header="Truthful" Binding="{Binding Truthful}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</controls:MetroWindow>
