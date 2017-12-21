@@ -91,7 +91,6 @@
     <Compile Include="Service\BasicsOperationQuestion.cs" />
     <Compile Include="Service\BasicsOperationTest.cs" />
     <Compile Include="Service\GETTEST.cs" />
-    <Compile Include="Service\LogicaOfApplication.cs" />
     <Page Include="AnswerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
